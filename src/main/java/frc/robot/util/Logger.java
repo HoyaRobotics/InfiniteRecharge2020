@@ -26,6 +26,7 @@ public class Logger{
     private FileWriter writer;
     private int id = 100000;
     private boolean empty = true;
+    private boolean flushed = true;
 
     private Logger(){
         try{    
@@ -67,27 +68,28 @@ public class Logger{
             }
             
             // Use StringBuilder for efficiency.
-            StringBuilder msgBuilder = new StringBuilder();
-            msgBuilder.append("[");
-            msgBuilder.append(Timer.getFPGATimestamp());
-            msgBuilder.append("] [");
-            msgBuilder.append(tag);
-            msgBuilder.append("]: ");
-            msgBuilder.append(message);
-            msgBuilder.append("\r\n");
+            StringBuilder msgBuilder = new StringBuilder(64);
+            msgBuilder.append("[")
+                .append(Timer.getFPGATimestamp())
+                .append("] [")
+                .append(tag)
+                .append("]: ")
+                .append(message)
+                .append("\r\n");
 
-            // flush() writes all data in the writer's buffer to the file.
             writer.write(msgBuilder.toString());
-            writer.flush();
+            flushed = false;
         }catch(IOException e){
             e.printStackTrace();
-        }
+        }catch(NullPointerException e){} // fail quietly, this just means there is no USB drive
     }
 
     /**
      * Log message at the INFO importance level.
      */
     public static void info(String message){
+        if(message.isEmpty())
+            return;
         instance.log("INFO", message);
     }
 
@@ -95,6 +97,8 @@ public class Logger{
      * Log a message at the WARN importance level.
      */
     public static void warn(String message){
+        if(message.isEmpty())
+            return;
         instance.log("WARN", message);
     }
 
@@ -102,7 +106,24 @@ public class Logger{
      * Log a message at the SEVERE importance level.
      */
     public static void severe(String message){
+        if(message.isEmpty())
+            return;
         instance.log("SEVERE", message);
+    }
+
+    /**
+     * Flushes the FileWriter if it has been written to since last call.
+     */
+    public static void flush(){
+        if(instance.flushed)
+            return;
+
+        try{
+            instance.writer.flush();
+            instance.flushed = true;
+        }catch(IOException e){
+            e.printStackTrace();
+        }
     }
 
 }
