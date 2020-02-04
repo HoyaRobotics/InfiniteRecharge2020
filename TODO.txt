@@ -1,7 +1,22 @@
-Subsystems:
-Gearbox
+Auto-shifting:
+Goal: up and downshift automatically.
 
-Commands:
-Upshift (dpad up)
-Downshift (dpad down)
-Autoshift (default gearbox command)
+Depends on what variables?
+- speed
+- acceleration
+
+When do we upshift?
+- prolonged positive acceleration
+- over certain speed
+
+When do we downshift?
+- prolonged negative acceleration
+- under certain speed
+
+Solenoid shifter
+boolean inHighGear
+
+setHighGear(boolean highGear)
+if(highGear != inHighGear)
+    inHighGear = highGear
+    shifter.set(!highGear)

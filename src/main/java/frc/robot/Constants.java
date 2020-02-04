@@ -20,5 +20,6 @@ public final class Constants {
     public static final int FRONT_RIGHT_DRIVE = 1;
     public static final int REAR_LEFT_DRIVE = 2;
     public static final int REAR_RIGHT_DRIVE = 3;
+    public static final int SHIFTER = 0; //PCM id
 
 }

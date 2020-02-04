@@ -15,13 +15,6 @@ public class DriveBase extends SubsystemBase {
     private final TalonFX rearLeftMotor = new TalonFX(REAR_LEFT_DRIVE);
     private final TalonFX rearRightMotor = new TalonFX(REAR_RIGHT_DRIVE);
 
-    public DriveBase(){
-    }
-
-    @Override
-    public void periodic(){
-    }
-
     /**
      * Drives the robot with arcade controls, supplying throttle and rotation.
      */
