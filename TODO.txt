@@ -1,0 +1,7 @@
+Subsystems:
+Gearbox
+
+Commands:
+Upshift (dpad up)
+Downshift (dpad down)
+Autoshift (default gearbox command)
