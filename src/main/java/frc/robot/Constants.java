@@ -10,16 +10,22 @@ import edu.wpi.first.wpilibj.XboxController.Button;
 public class Constants {
 
     // Controls
-    public static final int CONTROLLER = 0;
     public static final Hand DRIVE = Hand.kLeft;
     public static final int TOGGLE_GEAR = Button.kY.value;
 
-    // Drive
-    public static final double CONTROL_DEADBAND = 0.15;
+    // USB ids
+    public static final int CONTROLLER = 0;
+
+    // CANbus ids
     public static final int FRONT_LEFT_DRIVE = 0;
     public static final int FRONT_RIGHT_DRIVE = 1;
     public static final int REAR_LEFT_DRIVE = 2;
     public static final int REAR_RIGHT_DRIVE = 3;
-    public static final int SHIFTER = 0; //PCM id
+
+    // PCM ids
+    public static final int SHIFTER = 0;
+
+    // DriveBase
+    public static final double CONTROL_DEADBAND = 0.15;
 
 }
