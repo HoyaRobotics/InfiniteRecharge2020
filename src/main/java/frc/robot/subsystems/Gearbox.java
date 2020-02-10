@@ -17,4 +17,8 @@ public class Gearbox extends SubsystemBase {
         }
     }
 
+    public void toggleGear(){
+        setHighGear(!highGear);
+    }
+
 }

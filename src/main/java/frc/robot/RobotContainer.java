@@ -1,12 +1,14 @@
 package frc.robot;
 
+import static frc.robot.Constants.*;
+
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.GenericHID.Hand;
 import frc.robot.commands.DriveWithJoystick;
 import frc.robot.subsystems.DriveBase;
 import frc.robot.subsystems.Gearbox;
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.button.POVButton;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 /**
  * This class is where the robot subsystems and their various commands
@@ -18,12 +20,12 @@ public class RobotContainer {
 
   private final DriveBase driveBase = new DriveBase();
   private final Gearbox gearbox = new Gearbox();
-
+  
   public RobotContainer() {
-    driveBase.setDefaultCommand(new DriveWithJoystick(driveBase, () -> controller.getY(Hand.kLeft), () -> controller.getX(Hand.kLeft)));
+    driveBase.setDefaultCommand(new DriveWithJoystick(driveBase, () -> controller.getY(DRIVE), () -> controller.getX(DRIVE)));
 
-    new POVButton(controller, 0).whenPressed(() -> gearbox.setHighGear(true));
-    new POVButton(controller, 180).whenPressed(() -> gearbox.setHighGear(false));
+    JoystickButton toggleGear = new JoystickButton(controller, TOGGLE_GEAR);
+    toggleGear.whenPressed(new InstantCommand(() -> gearbox.toggleGear()));
   }
 
 

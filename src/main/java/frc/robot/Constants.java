@@ -1,5 +1,8 @@
 package frc.robot;
 
+import edu.wpi.first.wpilibj.GenericHID.Hand;
+import edu.wpi.first.wpilibj.XboxController.Button;
+
 /**
  * This class contains all the constant values used for setting up
  * and running the robot.
@@ -8,8 +11,8 @@ public class Constants {
 
     // Controls
     public static final int CONTROLLER = 0;
-    public static final int THROTTLE = 1;
-    public static final int TURN = 0;
+    public static final Hand DRIVE = Hand.kLeft;
+    public static final int TOGGLE_GEAR = Button.kY.value;
 
     // Drive
     public static final double CONTROL_DEADBAND = 0.15;
