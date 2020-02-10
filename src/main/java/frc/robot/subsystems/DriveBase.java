@@ -19,8 +19,10 @@ public class DriveBase extends SubsystemBase {
      * Drives the robot with arcade controls, supplying throttle and rotation.
      */
     public void arcadeDrive(double throttle, double rotation){
-        double leftSide = Utils.limit((throttle * -1) + rotation);
-        double rightSide = Utils.limit(throttle + rotation);
+        rotation *= -1;
+
+        double leftSide = Utils.limit(throttle + rotation);
+        double rightSide = Utils.limit((throttle * -1) + rotation);
 
         frontLeftMotor.set(ControlMode.PercentOutput, leftSide);
         rearLeftMotor.set(ControlMode.PercentOutput, leftSide);
