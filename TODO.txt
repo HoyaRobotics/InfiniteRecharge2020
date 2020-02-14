@@ -20,3 +20,8 @@ setHighGear(boolean highGear)
 if(highGear != inHighGear)
     inHighGear = highGear
     shifter.set(!highGear)
+
+For turret:
+- solenoid off by default blocking access to the shooter
+- access to shooter always blocked unless shooting wheel is up to speed
+- need to measure recovery time
