@@ -1,8 +1,6 @@
 package frc.robot;
 
 import static frc.robot.Constants.*;
-
-import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.Joystick;
 import frc.robot.commands.DriveWithJoystick;
 import frc.robot.subsystems.DriveBase;

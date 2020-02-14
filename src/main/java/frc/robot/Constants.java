@@ -24,6 +24,8 @@ public class Constants {
     public static final int REAR_LEFT_DRIVE = 2;
     public static final int REAR_RIGHT_DRIVE = 3;
     public static final int INTAKE_POLYCORD_ROLLER = -1;
+    public static final int SHOOTER_LEFT = -1;
+    public static final int SHOOTER_RIGHT = -1;
 
     // PCM ids
     public static final int SHIFTER = 0;
@@ -34,5 +36,12 @@ public class Constants {
 
     // Intake
     public static final double INTAKE_SPEED = 0.2;
+
+    // Shooter
+    public static final double SHOOTER_P = 0;
+    public static final double SHOOTER_I = 0;
+    public static final double SHOOTER_IZ = 0;
+    public static final double SHOOTER_D = 0;
+    public static final double SHOOTER_FF = 0;
 
 }

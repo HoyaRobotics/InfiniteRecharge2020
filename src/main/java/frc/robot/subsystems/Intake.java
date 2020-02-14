@@ -12,6 +12,7 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 public class Intake extends SubsystemBase {
 
     private final Solenoid raiser = new Solenoid(INTAKE_RAISER);
+    
     private final CANSparkMax polycordRoller = new CANSparkMax(INTAKE_POLYCORD_ROLLER, MotorType.kBrushless);
 
     private boolean raised = false;

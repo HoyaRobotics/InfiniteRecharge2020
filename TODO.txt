@@ -25,3 +25,11 @@ For turret:
 - solenoid off by default blocking access to the shooter
 - access to shooter always blocked unless shooting wheel is up to speed
 - need to measure recovery time
+
+when joystick input says shoot:
+rotate turret to target
+get shooter up to speed
+once shooter is up to speed, open ball gate
+after ball has been shot, close ball gate
+repeat
+if shoot input ever goes away, stop process
