@@ -1,7 +1,7 @@
 package frc.robot;
 
 import static frc.robot.Constants.*;
-import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.DriveWithJoystick;
 import frc.robot.subsystems.DriveBase;
 import frc.robot.subsystems.Gearbox;
@@ -16,22 +16,22 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
  */
 public class RobotContainer {
 
-  private final Joystick controller = new Joystick(CONTROLLER);
+  private final XboxController controller = new XboxController(CONTROLLER);
 
   private final DriveBase driveBase = new DriveBase();
   private final Gearbox gearbox = new Gearbox();
   //private final Intake intake = new Intake();
   
   public RobotContainer() {
-    driveBase.setDefaultCommand(new DriveWithJoystick(driveBase, () -> controller.getY(DRIVE), () -> controller.getX(DRIVE)));
+    driveBase.setDefaultCommand(new DriveWithJoystick(driveBase, () -> controller.getY(Controls.DRIVE), () -> controller.getX(Controls.DRIVE)));
 
-    JoystickButton toggleGear = new JoystickButton(controller, TOGGLE_GEAR);
+    JoystickButton toggleGear = new JoystickButton(controller, Controls.TOGGLE_GEAR);
     toggleGear.whenPressed(new InstantCommand(() -> gearbox.toggleGear()));
 
-    /*JoystickButton toggleIntakeRaised = new JoystickButton(controller, TOGGLE_INTAKE_RAISED);
+    /*JoystickButton toggleIntakeRaised = new JoystickButton(controller, Controls.TOGGLE_INTAKE_RAISED);
     toggleIntakeRaised.whenPressed(new InstantCommand(() -> intake.toggleRaised()));
 
-    JoystickButton runIntake = new JoystickButton(controller, RUN_INTAKE);
+    JoystickButton runIntake = new JoystickButton(controller, Controls.RUN_INTAKE);
     runIntake.whenPressed(new InstantCommand(() -> intake.setPolycordRoller(INTAKE_SPEED)));
     runIntake.whenReleased(new InstantCommand(() -> intake.setPolycordRoller(0)));*/
   }

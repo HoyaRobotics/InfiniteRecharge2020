@@ -9,11 +9,12 @@ import edu.wpi.first.wpilibj.XboxController.Button;
  */
 public class Constants {
 
-    // Controls
-    public static final Hand DRIVE = Hand.kLeft;
-    public static final int TOGGLE_GEAR = Button.kY.value;
-    public static final int TOGGLE_INTAKE_RAISED = -1;
-    public static final int RUN_INTAKE = -1;
+    public static class Controls {
+        public static final Hand DRIVE = Hand.kLeft;
+        public static final int TOGGLE_GEAR = Button.kY.value;
+        public static final int TOGGLE_INTAKE_RAISED = -1;
+        public static final int RUN_INTAKE = -1;
+    }
 
     // USB ids
     public static final int CONTROLLER = 0;
