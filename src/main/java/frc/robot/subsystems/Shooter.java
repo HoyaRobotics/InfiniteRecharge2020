@@ -12,36 +12,30 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 public class Shooter extends SubsystemBase {
 
-    private final CANSparkMax left = new CANSparkMax(SHOOTER_LEFT, MotorType.kBrushless);
-    private final CANSparkMax right = new CANSparkMax(SHOOTER_RIGHT, MotorType.kBrushless);
+    private final CANSparkMax master = new CANSparkMax(SHOOTER_LEFT, MotorType.kBrushless);
+    private final CANSparkMax slave = new CANSparkMax(SHOOTER_RIGHT, MotorType.kBrushless);
 
-    private final CANPIDController leftPID = left.getPIDController();
-    private final CANPIDController rightPID = right.getPIDController();
-
-    private final CANEncoder leftEncoder = left.getEncoder();
-    private final CANEncoder rightEncoder = right.getEncoder();
+    private final CANPIDController pid = master.getPIDController();
+    private final CANEncoder encoder = master.getEncoder();
 
     public Shooter(){
-        leftPID.setFeedbackDevice(leftEncoder);
-        leftPID.setOutputRange(-1, 1);
-        leftPID.setP(SHOOTER_P);
-        leftPID.setI(SHOOTER_I);
-        leftPID.setD(SHOOTER_D);
-        leftPID.setIZone(SHOOTER_IZ);
-        leftPID.setFF(SHOOTER_FF);
+        pid.setFeedbackDevice(encoder);
+        pid.setOutputRange(-1, 1);
+        pid.setP(SHOOTER_P);
+        pid.setI(SHOOTER_I);
+        pid.setD(SHOOTER_D);
+        pid.setIZone(SHOOTER_IZ);
+        pid.setFF(SHOOTER_FF);
 
-        rightPID.setFeedbackDevice(rightEncoder);
-        rightPID.setOutputRange(-1, 1);
-        rightPID.setP(SHOOTER_P);
-        rightPID.setI(SHOOTER_I);
-        rightPID.setD(SHOOTER_D);
-        rightPID.setIZone(SHOOTER_IZ);
-        rightPID.setFF(SHOOTER_FF);
+        slave.follow(master);
     }
 
-    public void setFlywheelSpeed(double speed){
-        leftPID.setReference(speed, ControlType.kVelocity);
-        rightPID.setReference(speed, ControlType.kVelocity);
+    public void setFlywheelRPM(double rpm){
+        pid.setReference(rpm, ControlType.kVelocity);
+    }
+
+    public double getFlywheelRPM(){
+        return encoder.getVelocity();
     }
 
 }
