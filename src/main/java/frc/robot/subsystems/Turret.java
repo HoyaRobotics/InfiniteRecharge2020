@@ -11,8 +11,6 @@ public class Turret extends SubsystemBase {
 
     private final WPI_TalonSRX rotator = new WPI_TalonSRX(TURRET_ROTATOR);
 
-    private double setpoint = 0;
-
     public Turret(){
         rotator.configSelectedFeedbackSensor(TalonSRXFeedbackDevice.Analog, 0, 10);
         rotator.setSelectedSensorPosition(0, 0, 10);
@@ -23,9 +21,13 @@ public class Turret extends SubsystemBase {
         rotator.config_kD(0, TURRET_D);
     }
 
-    public void rotate(double degrees){
-        setpoint += degrees;
-        rotator.set(ControlMode.Position, setpoint);
+    public void newTarget(double degrees){
+        rotator.setSelectedSensorPosition(0);
+        rotator.set(ControlMode.Position, degrees);
+    }
+
+    public void updateTarget(double degrees){
+        rotator.set(ControlMode.Position, degrees);
     }
 
     public double getVelocity(){

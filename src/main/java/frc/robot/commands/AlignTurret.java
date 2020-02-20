@@ -17,7 +17,12 @@ public class AlignTurret extends CommandBase {
 
     @Override
     public void initialize(){
-        turret.rotate(limelight.getXOffset());
+        turret.newTarget(limelight.getXOffset());
+    }
+
+    @Override
+    public void execute(){
+        turret.updateTarget(limelight.getXOffset());
     }
 
     @Override
