@@ -17,10 +17,6 @@ public class Intake extends SubsystemBase {
 
     private boolean raised = false;
 
-    public Intake(){
-        setRaised(true);
-    }
-
     public void setRaised(boolean raised){
         if(this.raised != raised){
             this.raised = raised;
