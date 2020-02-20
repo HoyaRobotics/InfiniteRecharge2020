@@ -60,4 +60,9 @@ public class Constants {
     public static final double TURRET_SENSITIVITY_DEGREES = 0;
     public static final double TURRET_SENSITIVITY_VELOCITY = 0;
 
+    // Limelight
+    public static final double LL_HEIGHT_ABOVE_GROUND = 0;
+    public static final double LL_TARGET_HEIGHT = 0;
+    public static final double LL_SHOT_HEIGHT = LL_TARGET_HEIGHT - LL_HEIGHT_ABOVE_GROUND;
+
 }
