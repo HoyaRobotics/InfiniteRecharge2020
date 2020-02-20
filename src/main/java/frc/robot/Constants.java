@@ -31,6 +31,7 @@ public class Constants {
     // PCM ids
     public static final int SHIFTER = 0;
     public static final int INTAKE_RAISER = -1;
+    public static final int BALL_GATE = -1;
 
     // DriveBase
     public static final double CONTROL_DEADBAND = 0.15;

@@ -1,5 +1,6 @@
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import static frc.robot.Constants.*;
@@ -11,6 +12,8 @@ import com.revrobotics.ControlType;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 public class Shooter extends SubsystemBase {
+
+    private final Solenoid ballGate = new Solenoid(BALL_GATE);
 
     private final CANSparkMax master = new CANSparkMax(SHOOTER_LEFT, MotorType.kBrushless);
     private final CANSparkMax slave = new CANSparkMax(SHOOTER_RIGHT, MotorType.kBrushless);
@@ -36,6 +39,14 @@ public class Shooter extends SubsystemBase {
 
     public double getFlywheelRPM(){
         return encoder.getVelocity();
+    }
+
+    public void openBallGate(){
+        ballGate.set(true);
+    }
+
+    public void closeBallGate(){
+        ballGate.set(false);
     }
 
 }
