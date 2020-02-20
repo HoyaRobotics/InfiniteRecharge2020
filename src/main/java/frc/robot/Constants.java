@@ -14,6 +14,7 @@ public class Constants {
         public static final int TOGGLE_GEAR = Button.kY.value;
         public static final int TOGGLE_INTAKE_RAISED = -1;
         public static final int RUN_INTAKE = -1;
+        public static final int SHOOT_BALL = -1;
     }
 
     // USB ids
