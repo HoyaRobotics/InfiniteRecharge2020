@@ -29,6 +29,7 @@ public class Constants {
     public static final int INTAKE_INTERNAL_ROLLER_SLAVE = -1;
     public static final int SHOOTER_LEFT = -1;
     public static final int SHOOTER_RIGHT = -1;
+    public static final int TURRET_ROTATOR = -1;
 
     // PCM ids
     public static final int SHIFTER = 0;
@@ -48,5 +49,11 @@ public class Constants {
     public static final double SHOOTER_D = 0;
     public static final double SHOOTER_FF = 0;
     public static final double RPM_STABILITY_ERROR = 0;
+
+    // Turret
+    public static final double TURRET_P = 0;
+    public static final double TURRET_I = 0;
+    public static final double TURRET_D = 0;
+    public static final double TURRET_F = 0;
 
 }
