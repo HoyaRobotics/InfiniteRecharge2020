@@ -45,5 +45,6 @@ public class Constants {
     public static final double SHOOTER_IZ = 0;
     public static final double SHOOTER_D = 0;
     public static final double SHOOTER_FF = 0;
+    public static final double RPM_STABILITY_ERROR = 0;
 
 }

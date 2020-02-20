@@ -21,6 +21,9 @@ public class Shooter extends SubsystemBase {
     private final CANPIDController pid = master.getPIDController();
     private final CANEncoder encoder = master.getEncoder();
 
+    private double[] rpmLog = new double[20];
+    private int rpmLogCounter = 0;
+
     public Shooter(){
         pid.setFeedbackDevice(encoder);
         pid.setOutputRange(-1, 1);
@@ -31,6 +34,27 @@ public class Shooter extends SubsystemBase {
         pid.setFF(SHOOTER_FF);
 
         slave.follow(master);
+    }
+
+    @Override
+    public void periodic(){
+        rpmLog[rpmLogCounter] = getFlywheelRPM();
+
+        if(rpmLogCounter < rpmLog.length - 1)
+            rpmLogCounter++;
+        else
+            rpmLogCounter = 0;
+    }
+
+    public boolean isStableAt(double rpm){
+        double average = 0;
+
+        for(int i = 0; i < rpmLog.length; i++)
+            average += rpmLog[i];
+
+        average /= rpmLog.length;
+
+        return Math.abs(rpm - average) < RPM_STABILITY_ERROR;
     }
 
     public void setFlywheelRPM(double rpm){
