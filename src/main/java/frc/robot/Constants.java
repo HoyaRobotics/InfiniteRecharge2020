@@ -41,6 +41,7 @@ public class Constants {
 
     // Intake
     public static final double INTAKE_SPEED = 0.2;
+    public static final double BALL_RELEASE_TIME = 0.1;
 
     // Shooter
     public static final double SHOOTER_P = 0;
