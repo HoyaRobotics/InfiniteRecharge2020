@@ -19,7 +19,7 @@ public class ShooterRev extends CommandBase {
 
     @Override
     public void execute(){
-        double distanceToGoal = LL_SHOT_HEIGHT / Math.tan(limelight.getYOffset());
+        double distanceToGoal = LL_SHOT_HEIGHT / Math.tan(Math.toRadians(limelight.getYOffset()));
 
         int newTargetRPM = 0;
 
