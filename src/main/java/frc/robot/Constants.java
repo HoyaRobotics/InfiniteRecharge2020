@@ -55,5 +55,7 @@ public class Constants {
     public static final double TURRET_I = 0;
     public static final double TURRET_D = 0;
     public static final double TURRET_F = 0;
+    public static final double TURRET_SENSITIVITY_DEGREES = 0;
+    public static final double TURRET_SENSITIVITY_VELOCITY = 0;
 
 }
