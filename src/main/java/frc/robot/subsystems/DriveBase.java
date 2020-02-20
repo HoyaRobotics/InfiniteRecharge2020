@@ -25,6 +25,8 @@ public class DriveBase extends SubsystemBase {
      * Drives the robot with arcade controls, supplying throttle and rotation.
      */
     public void arcadeDrive(double throttle, double rotation){
+        rotation = Math.pow(2, (8 * rotation) - 8);
+
         drive.arcadeDrive(throttle, rotation);
     }
 
