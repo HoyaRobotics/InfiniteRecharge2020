@@ -6,6 +6,8 @@ import frc.robot.util.Utils;
 
 import static frc.robot.Constants.*;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
@@ -13,9 +15,16 @@ public class Intake extends SubsystemBase {
 
     private final Solenoid raiser = new Solenoid(INTAKE_RAISER);
     
-    private final CANSparkMax polycordRoller = new CANSparkMax(INTAKE_POLYCORD_ROLLER, MotorType.kBrushless);
+    private final CANSparkMax externalRoller = new CANSparkMax(INTAKE_EXTERNAL_ROLLER, MotorType.kBrushless);
+
+    private final WPI_TalonSRX internalRollerMaster = new WPI_TalonSRX(INTAKE_INTERNAL_ROLLER_MASTER);
+    private final WPI_TalonSRX internalRollerSlave = new WPI_TalonSRX(INTAKE_INTERNAL_ROLLER_SLAVE);
 
     private boolean raised = false;
+
+    public Intake(){
+        internalRollerSlave.follow(internalRollerMaster);
+    }
 
     public void setRaised(boolean raised){
         if(this.raised != raised){
@@ -30,8 +39,12 @@ public class Intake extends SubsystemBase {
         setRaised(!raised);
     }
 
-    public void setPolycordRoller(double speed){
-        polycordRoller.set(Utils.limit(speed));
+    public void setExternalRoller(double speed){
+        externalRoller.set(Utils.limit(speed));
+    }
+
+    public void setInternalRoller(double speed){
+        internalRollerMaster.set(ControlMode.PercentOutput, speed);
     }
 
 }

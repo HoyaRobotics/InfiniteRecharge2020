@@ -24,7 +24,9 @@ public class Constants {
     public static final int FRONT_RIGHT_DRIVE = 1;
     public static final int REAR_LEFT_DRIVE = 2;
     public static final int REAR_RIGHT_DRIVE = 3;
-    public static final int INTAKE_POLYCORD_ROLLER = -1;
+    public static final int INTAKE_EXTERNAL_ROLLER = -1;
+    public static final int INTAKE_INTERNAL_ROLLER_MASTER = -1;
+    public static final int INTAKE_INTERNAL_ROLLER_SLAVE = -1;
     public static final int SHOOTER_LEFT = -1;
     public static final int SHOOTER_RIGHT = -1;
 
