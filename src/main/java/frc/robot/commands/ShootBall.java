@@ -16,4 +16,8 @@ public class ShootBall extends SequentialCommandGroup {
         );
     }
 
+    @Override
+    public void end(boolean interrupted){
+        shooter.setFlywheelRPM(0);
+    }
 }

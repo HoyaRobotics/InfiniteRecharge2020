@@ -26,4 +26,9 @@ public class AlignTurret extends CommandBase {
             && (Math.abs(turret.getVelocity()) < TURRET_SENSITIVITY_VELOCITY);
     }
 
+    @Override
+    public void end(boolean interrupted){
+        turret.setRotatorSpeed(0);
+    }
+
 }
