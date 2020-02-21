@@ -28,9 +28,9 @@ public class Constants {
     public static final int TURRET_ROTATOR = 4;
     public static final int INTAKE_INTERNAL_ROLLER_MASTER = 5;
     public static final int INTAKE_INTERNAL_ROLLER_SLAVE = 6;
-    public static final int INTAKE_EXTERNAL_ROLLER = -1;
-    public static final int SHOOTER_LEFT = -1;
-    public static final int SHOOTER_RIGHT = -1;
+    public static final int INTAKE_EXTERNAL_ROLLER = 7;
+    public static final int SHOOTER_LEFT = 8;
+    public static final int SHOOTER_RIGHT = 9;
 
     // PCM ids
     public static final int INTAKE_RAISER = 0;
