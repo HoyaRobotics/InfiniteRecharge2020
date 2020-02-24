@@ -81,7 +81,16 @@ public class Logger{
             flushed = false;
         }catch(IOException e){
             e.printStackTrace();
-        }catch(NullPointerException e){} // fail quietly, this just means there is no USB drive
+        }catch(NullPointerException e){
+            try{
+                File logFile = new File("/home/lvuser/latest.txt");
+                logFile.createNewFile();
+                
+                writer = new FileWriter(logFile);
+            }catch(IOException e1){
+                e.printStackTrace();
+            }
+        }
     }
 
     /**
