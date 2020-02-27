@@ -17,7 +17,16 @@ public class AlignTurret extends CommandBase {
 
     @Override
     public void execute(){
-        turret.setRotatorSpeed(limelight.getXOffset() * TURRET_P);
+        //POSITVE ROTATOR SPEED = CLOCKWISE
+        //NEGATIVE ROTATOR SPEED = COUNTER-CLOCKWISE
+        double speed = limelight.getXOffset() * TURRET_P;
+
+        if(speed > 0.1)
+            speed = 0.1;
+        else if(speed < -0.1)
+            speed = -0.1;
+
+        turret.setRotatorSpeed(speed);
     }
 
     @Override
