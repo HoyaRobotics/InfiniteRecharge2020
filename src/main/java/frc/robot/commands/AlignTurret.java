@@ -13,13 +13,15 @@ public class AlignTurret extends CommandBase {
     public AlignTurret(Turret turret, Limelight limelight){
         this.turret = turret;
         this.limelight = limelight;
+
+        addRequirements(turret);
     }
 
     @Override
     public void execute(){
         //POSITVE ROTATOR SPEED = CLOCKWISE
         //NEGATIVE ROTATOR SPEED = COUNTER-CLOCKWISE
-        double speed = limelight.getXOffset() * TURRET_P;
+        double speed = (limelight.getXOffset() + 3) * TURRET_P;
 
         if(speed > 0.1)
             speed = 0.1;
@@ -31,8 +33,7 @@ public class AlignTurret extends CommandBase {
 
     @Override
     public boolean isFinished(){
-        return (Math.abs(limelight.getXOffset()) < TURRET_SENSITIVITY_DEGREES)
-            && (Math.abs(turret.getVelocity()) < TURRET_SENSITIVITY_VELOCITY);
+        return Math.abs((limelight.getXOffset() + 3)) < TURRET_SENSITIVITY_DEGREES;
     }
 
     @Override
