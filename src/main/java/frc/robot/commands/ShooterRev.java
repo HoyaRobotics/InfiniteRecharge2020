@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import static frc.robot.Constants.*;
 import frc.robot.subsystems.Shooter;
 import frc.robot.util.Limelight;
+import frc.robot.util.Logger;
 
 public class ShooterRev extends CommandBase {
 
@@ -18,20 +19,26 @@ public class ShooterRev extends CommandBase {
     }
 
     @Override
+    public void initialize(){
+        double distance = LL_SHOT_HEIGHT / Math.abs(Math.toRadians(limelight.getYOffset())) + 0.5;
+
+        //sets rpm
+        if(distance <= 30)
+            targetRPM = (distance * 34.1) + 2505;
+        else
+            targetRPM = (distance * 44.1) + 2143;
+
+        shooter.setFlywheelRPM(targetRPM);
+    }
+
+    @Override
     public void execute(){
-        double distanceToGoal = LL_SHOT_HEIGHT / Math.tan(Math.toRadians(limelight.getYOffset()));
-
-        int newTargetRPM = 0;
-
-        if(Math.abs(newTargetRPM - targetRPM) > SHOOTER_DISTANCE_SENSITVITY){
-            targetRPM = newTargetRPM;
-            shooter.setFlywheelRPM(newTargetRPM);
-        }
+        Logger.info("Flywheel Velocity: " + shooter.getFlywheelRPM());
     }
 
     @Override
     public boolean isFinished(){
-        return shooter.isStableAt(targetRPM);
+        return shooter.isStable();
     }
 
 }
