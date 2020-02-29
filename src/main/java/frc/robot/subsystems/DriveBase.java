@@ -1,5 +1,7 @@
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.NeutralMode;
+import com.ctre.phoenix.motorcontrol.SupplyCurrentLimitConfiguration;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
@@ -17,6 +19,22 @@ public class DriveBase extends SubsystemBase {
     private final DifferentialDrive drive = new DifferentialDrive(leftMaster, rightMaster);
 
     public DriveBase(){
+        leftMaster.configFactoryDefault();
+        rightMaster.configFactoryDefault();
+        leftSlave.configFactoryDefault();
+        rightSlave.configFactoryDefault();
+
+        SupplyCurrentLimitConfiguration supplyLimit = new SupplyCurrentLimitConfiguration(true, 30, 35, 1.0);
+        leftMaster.configSupplyCurrentLimit(supplyLimit);
+        rightMaster.configSupplyCurrentLimit(supplyLimit);
+        leftSlave.configSupplyCurrentLimit(supplyLimit);
+        rightSlave.configSupplyCurrentLimit(supplyLimit);
+
+        leftMaster.setNeutralMode(NeutralMode.Coast);
+        rightMaster.setNeutralMode(NeutralMode.Coast);
+        leftSlave.setNeutralMode(NeutralMode.Coast);
+        rightSlave.setNeutralMode(NeutralMode.Coast);
+
         leftSlave.follow(leftMaster);
         rightSlave.follow(rightMaster);
     }
