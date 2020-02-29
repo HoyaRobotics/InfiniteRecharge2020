@@ -12,7 +12,10 @@ public class Constants {
     public static class Controls {
         public static final Hand DRIVE = Hand.kLeft;
         public static final int TOGGLE_GEAR = Button.kY.value;
-        public static final int TOGGLE_INTAKE_RAISED = -1;
+        public static final int TOGGLE_INTAKE_RAISED = Button.kX.value;
+        //Mct added
+        public static final int TOGGLE_BALL_GATE = Button.kB.value;
+        //end of McT added
         public static final int RUN_INTAKE = -1;
         public static final int SHOOT_BALL = -1;
     }
@@ -33,12 +36,12 @@ public class Constants {
     public static final int SHOOTER_RIGHT = 9;
 
     // PCM ids
-    public static final int INTAKE_RAISER = 0;
+    public static final int INTAKE_RAISER = 3;
     public static final int SHIFTER = 1;
     public static final int BALL_GATE = 2;
 
     // DriveBase
-    public static final double CONTROL_DEADBAND = 0.15;
+    public static final double CONTROL_DEADBAND = 0.10;
 
     // Intake
     public static final double INTAKE_SPEED = 0.2;
@@ -50,17 +53,17 @@ public class Constants {
     public static final double SHOOTER_IZ = 0;
     public static final double SHOOTER_D = 0;
     public static final double SHOOTER_FF = 0;
-    public static final double RPM_STABILITY_ERROR = 0;
+    public static final double RPM_STABILITY_ERROR = 25;
     public static final double SHOOTER_DISTANCE_SENSITVITY = 0;
 
     // Turret
-    public static final double TURRET_P = 0;
-    public static final double TURRET_SENSITIVITY_DEGREES = 0;
+    public static final double TURRET_P = 0.05;
+    public static final double TURRET_SENSITIVITY_DEGREES = 0.5;
     public static final double TURRET_SENSITIVITY_VELOCITY = 0;
 
     // Limelight
-    public static final double LL_HEIGHT_ABOVE_GROUND = 0;
-    public static final double LL_TARGET_HEIGHT = 0;
+    public static final double LL_HEIGHT_ABOVE_GROUND = 2.75;//in feet (2'9")
+    public static final double LL_TARGET_HEIGHT = 7.5; //in feet
     public static final double LL_SHOT_HEIGHT = LL_TARGET_HEIGHT - LL_HEIGHT_ABOVE_GROUND;
 
 }
