@@ -21,4 +21,8 @@ public class Gearbox extends SubsystemBase {
         setHighGear(!highGear);
     }
 
+    public boolean isHighGear(){
+        return highGear;
+    }
+
 }
