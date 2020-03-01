@@ -34,11 +34,14 @@ public class Constants {
     public static final int INTAKE_EXTERNAL_ROLLER = 7;
     public static final int SHOOTER_LEFT = 8;
     public static final int SHOOTER_RIGHT = 9;
+    public static final int CLIMBER_VERTICAL = 10;
+    public static final int CLIMBER_HORIZONTAL = 11;
 
     // PCM ids
-    public static final int INTAKE_RAISER = 3;
+    public static final int CLIMBER_LOCK = 0;
     public static final int SHIFTER = 1;
     public static final int BALL_GATE = 2;
+    public static final int INTAKE_RAISER = 3;
 
     // DriveBase
     public static final double CONTROL_DEADBAND = 0.10;
