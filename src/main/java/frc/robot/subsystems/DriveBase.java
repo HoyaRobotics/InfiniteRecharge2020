@@ -39,6 +39,19 @@ public class DriveBase extends SubsystemBase {
         rightSlave.follow(rightMaster);
     }
 
+    public void zeroEncoders(){
+        leftMaster.getSensorCollection().setIntegratedSensorPosition(0, 30);
+        rightMaster.getSensorCollection().setIntegratedSensorPosition(0, 30);
+    }
+
+    public double getPosition(){
+        return rightMaster.getSensorCollection().getIntegratedSensorPosition();
+    }
+
+    public double getVelocity(){
+        return rightMaster.getSensorCollection().getIntegratedSensorVelocity();
+    }
+
     /**
      * Drives the robot with arcade controls, supplying throttle and rotation.
      */
