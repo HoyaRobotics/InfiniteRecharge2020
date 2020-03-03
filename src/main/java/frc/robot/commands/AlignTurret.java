@@ -3,7 +3,7 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import static frc.robot.Constants.*;
 import frc.robot.subsystems.Turret;
-import frc.robot.util.Limelight;
+import frc.robot.subsystems.Limelight;
 
 public class AlignTurret extends CommandBase {
 
@@ -14,7 +14,7 @@ public class AlignTurret extends CommandBase {
         this.turret = turret;
         this.limelight = limelight;
 
-        addRequirements(turret);
+        addRequirements(turret, limelight);
     }
 
     @Override

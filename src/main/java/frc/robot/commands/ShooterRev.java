@@ -3,7 +3,7 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import static frc.robot.Constants.*;
 import frc.robot.subsystems.Shooter;
-import frc.robot.util.Limelight;
+import frc.robot.subsystems.Limelight;
 import frc.robot.util.Logger;
 
 public class ShooterRev extends CommandBase {
@@ -16,6 +16,8 @@ public class ShooterRev extends CommandBase {
     public ShooterRev(Shooter shooter, Limelight limelight){
         this.shooter = shooter;
         this.limelight = limelight;
+
+        addRequirements(shooter, limelight);
     }
 
     @Override
