@@ -26,7 +26,7 @@ public class ShooterRev extends CommandBase {
         if(distance <= 30)
             targetRPM = (distance * 34.1) + 2505;
         else
-            targetRPM = (distance * 44.1) + 2143;
+            targetRPM = 3624;
 
         shooter.setFlywheelRPM(targetRPM);
     }
