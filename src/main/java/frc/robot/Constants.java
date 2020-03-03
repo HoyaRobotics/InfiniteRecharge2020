@@ -40,11 +40,13 @@ public class Constants {
     // PCM ids
     public static final int CLIMBER_LOCK = 0;
     public static final int SHIFTER = 1;
-    public static final int BALL_GATE = 2;
+    public static final int BALL_GATE = 4; //port 2 is broken - do not use port 2.
     public static final int INTAKE_RAISER = 3;
 
     // DriveBase
     public static final double CONTROL_DEADBAND = 0.10;
+    public static final int SENSOR_UNITS_PER_ROTATION = 2048;
+    public static final int ENCODER_UNITS_PER_ROTATION = 24140;
 
     // Intake
     public static final double INTAKE_SPEED = 0.2;
