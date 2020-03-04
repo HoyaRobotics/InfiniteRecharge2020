@@ -43,19 +43,18 @@ public class ControlClimber extends CommandBase {
         }else{
             if(!climber.isLocked()){
                 climber.setVerticalSpeed(0);
+                climber.setLocked(true);
                 lastTrigger = System.currentTimeMillis();
             }
-            if(System.currentTimeMillis() - lastTrigger > 200)
-                climber.setLocked(true);
         }
 
         //right
         if(command == 90){
-            climber.setHorizontalSpeed(0.5);
+            climber.setHorizontalSpeed(1.0);
         }
         //left
         else if(command == 270){
-            climber.setHorizontalSpeed(-0.5);
+            climber.setHorizontalSpeed(-1.0);
         }else{
             climber.setHorizontalSpeed(0);
         }

@@ -16,6 +16,10 @@ public class Climber extends SubsystemBase {
 
     private boolean locked = true;
 
+    public Climber(){
+        moveVerticalSlave.follow(moveVerticalMaster);
+    }
+
     public void setVerticalSpeed(double speed){
         moveVerticalMaster.set(speed);
     }
