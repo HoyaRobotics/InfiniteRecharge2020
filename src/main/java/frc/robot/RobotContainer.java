@@ -39,7 +39,8 @@ import edu.wpi.first.wpilibj.GenericHID.Hand;
  */
 public class RobotContainer {
 
-  private final XboxController controller = new XboxController(CONTROLLER);
+  private final XboxController driver = new XboxController(DRIVER);
+  private final XboxController operator = new XboxController(OPERATOR);
   private final Limelight limelight = new Limelight();
 
   private final DriveBase driveBase = new DriveBase();
@@ -50,17 +51,17 @@ public class RobotContainer {
   private final Climber climber = new Climber();
   
   public RobotContainer() {
-    driveBase.setDefaultCommand(new DriveWithJoystick(driveBase, () -> controller.getY(Controls.DRIVE), () -> controller.getX(Controls.DRIVE)));
-    turret.setDefaultCommand(new RotateWithJoystick(turret, () -> controller.getX(Hand.kRight)));
-    climber.setDefaultCommand(new ControlClimber(climber, () -> controller.getPOV()));
+    //Driver controls:
+    driveBase.setDefaultCommand(new DriveWithJoystick(driveBase, () -> driver.getY(Controls.DRIVE), () -> driver.getX(Controls.DRIVE)));
+    climber.setDefaultCommand(new ControlClimber(climber, () -> driver.getPOV()));
 
-    JoystickButton toggleGear = new JoystickButton(controller, Controls.TOGGLE_GEAR);
+    JoystickButton toggleGear = new JoystickButton(driver, Controls.TOGGLE_GEAR);
     toggleGear.whenPressed(new InstantCommand(() -> gearbox.toggleGear()));
 
     final double INTERNAL_SPEED = 1.0;
     final double EXTERNAL_SPEED = 1.0;
 
-    JoystickButton runIntakeFwd = new JoystickButton(controller, Button.kBumperRight.value);
+    JoystickButton runIntakeFwd = new JoystickButton(driver, Button.kBumperRight.value);
     runIntakeFwd.whenPressed(new InstantCommand(() -> {
       intake.setInternalRoller(INTERNAL_SPEED);
       intake.setExternalRoller(-EXTERNAL_SPEED); 
@@ -72,7 +73,7 @@ public class RobotContainer {
     }
     ));
 
-    JoystickButton runIntakeRvs = new JoystickButton(controller, Button.kBumperLeft.value);
+    JoystickButton runIntakeRvs = new JoystickButton(driver, Button.kBumperLeft.value);
     runIntakeRvs.whenPressed(new InstantCommand(() -> {
       intake.setInternalRoller(-INTERNAL_SPEED);
       intake.setExternalRoller(EXTERNAL_SPEED); 
@@ -84,16 +85,26 @@ public class RobotContainer {
     }
     ));
 
-    JoystickButton toggleIntakeRaised = new JoystickButton(controller, Controls.TOGGLE_INTAKE_RAISED);
+    JoystickButton toggleIntakeRaised = new JoystickButton(driver, Controls.TOGGLE_INTAKE_RAISED);
     toggleIntakeRaised.whenPressed(new InstantCommand(() -> intake.toggleRaised()));
     
-    JoystickButton toggleBallGate = new JoystickButton(controller, Controls.TOGGLE_BALL_GATE);
+    JoystickButton toggleBallGate = new JoystickButton(driver, Controls.TOGGLE_BALL_GATE);
     toggleBallGate.whenPressed(new InstantCommand(() -> shooter.toggleBallGate()));
 
-    JoystickButton shootBall = new JoystickButton(controller, Button.kA.value);
+    JoystickButton shootBall = new JoystickButton(driver, Button.kA.value);
     ShootBall shootBallCmd = new ShootBall(shooter, intake, turret, limelight);
     shootBall.whenPressed(shootBallCmd);
-    shootBall.whenReleased(new InstantCommand(() -> shootBallCmd.cancel()));
+    shootBall.whenReleased(new InstantCommand(() -> {
+      shootBallCmd.cancel();
+      shooter.setFlywheelPercent(0);
+      turret.setRotatorSpeed(0);
+    }));
+
+    //Operator controls:
+    turret.setDefaultCommand(new RotateWithJoystick(turret, () -> operator.getX(Hand.kLeft)));
+
+    JoystickButton toggleLimelightZoom = new JoystickButton(operator, Button.kB.value);
+    toggleLimelightZoom.whenPressed(new InstantCommand(() -> limelight.toggleZoom()));
   }
 
   
@@ -109,7 +120,7 @@ public class RobotContainer {
       ),
       new AlignTurret(turret, limelight),
       new ShooterRev(shooter, limelight),
-      new TimedIntake(intake, 1.0, 0.2, IntakeMode.INTERNAL),
+      new TimedIntake(intake, 1.0, 0.22, IntakeMode.INTERNAL),
       new ShooterRev(shooter, limelight),
       new TimedIntake(intake, 1.0, 0.15, IntakeMode.INTERNAL),
       new ShooterRev(shooter, limelight),
