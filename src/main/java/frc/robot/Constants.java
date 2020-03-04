@@ -21,7 +21,8 @@ public class Constants {
     }
 
     // USB ids
-    public static final int CONTROLLER = 0;
+    public static final int DRIVER = 0;
+    public static final int OPERATOR = 1;
 
     // CANbus ids
     public static final int FRONT_LEFT_DRIVE = 0;
