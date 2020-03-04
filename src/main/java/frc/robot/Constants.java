@@ -34,8 +34,9 @@ public class Constants {
     public static final int INTAKE_EXTERNAL_ROLLER = 7;
     public static final int SHOOTER_LEFT = 8;
     public static final int SHOOTER_RIGHT = 9;
-    public static final int CLIMBER_VERTICAL = 10;
-    public static final int CLIMBER_HORIZONTAL = 11;
+    public static final int CLIMBER_VERTICAL_1 = 10;
+    public static final int CLIMBER_VERTICAL_2 = 11;
+    public static final int CLIMBER_HORIZONTAL = 12;
 
     // PCM ids
     public static final int CLIMBER_LOCK = 0;
@@ -47,6 +48,8 @@ public class Constants {
     public static final double CONTROL_DEADBAND = 0.10;
     public static final int SENSOR_UNITS_PER_ROTATION = 2048;
     public static final int ENCODER_UNITS_PER_ROTATION = 24140;
+    public static final int ACCEL_UNITS = 473000;
+    public static final int DECEL_UNITS = ACCEL_UNITS;
 
     // Intake
     public static final double INTAKE_SPEED = 0.2;

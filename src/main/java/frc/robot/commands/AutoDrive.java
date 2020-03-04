@@ -1,7 +1,10 @@
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import static frc.robot.Constants.*;
 import frc.robot.subsystems.DriveBase;
+import frc.robot.util.Logger;
 
 /*
 Constants to find:
@@ -24,7 +27,7 @@ public class AutoDrive extends CommandBase {
     private enum DriveMode { ACCEL, CRUISE, DECEL };
 
     private final DriveBase driveBase;
-    private final double unitsTotal/*, unitsAccel, unitsCruise, unitsDecel*/;
+    private final double unitsTotal, unitsAccel, unitsCruise, unitsDecel;
 
     private DriveMode mode;
     private double percent;
@@ -35,7 +38,6 @@ public class AutoDrive extends CommandBase {
 
         unitsTotal = distance /* / INCHES_PER_UNIT */;
 
-        /*
         if(unitsTotal > ACCEL_UNITS + DECEL_UNITS){
             unitsAccel = ACCEL_UNITS;
             unitsDecel = DECEL_UNITS;
@@ -45,7 +47,6 @@ public class AutoDrive extends CommandBase {
             unitsDecel = unitsTotal - unitsAccel;
             unitsCruise = 0;
         }
-        */
 
         addRequirements(driveBase);
     }
@@ -55,40 +56,37 @@ public class AutoDrive extends CommandBase {
         driveBase.zeroEncoders();
         mode = DriveMode.ACCEL;
         unitsTravelled = 0;
+        percent = 0.25;
     }
+
+    final double MAX_SPEED = 1.0;
 
     @Override
     public void execute(){
         switch(mode){
             case ACCEL:
-                /*
                 if(unitsTravelled < unitsAccel)
-                    percent += 0.001;
+                    percent += 0.008;
                 else
-                    mode = CRUISE;
-                */
+                    mode = DriveMode.CRUISE;
                 break;
             case CRUISE:
-                /*
                 if(unitsTravelled > unitsAccel + unitsCruise)
-                    mode = DECEL;
-                */
+                    mode = DriveMode.DECEL;
                 break;
             case DECEL:
-                /*
                 if(driveBase.getVelocity() > 0)
-                    speed -= 0.001;
-                */
+                    percent -= 0.008;
                 break;
         }
 
-        if(percent > 0.3)
-            percent = 0.3;
+        if(percent > MAX_SPEED)
+            percent = MAX_SPEED;
         else if(percent < 0)
             percent = 0;
 
         unitsTravelled = driveBase.getPosition();
-        driveBase.arcadeDrive(percent, 0);
+        driveBase.arcadeDrive(-percent, 0);
     }
 
     @Override
@@ -98,6 +96,7 @@ public class AutoDrive extends CommandBase {
 
     @Override
     public void end(boolean interrupted){
+        //Logger.info("Reached cruise speed at " + unitsTravelled + " units travelled.");
         driveBase.arcadeDrive(0, 0);
     }
 

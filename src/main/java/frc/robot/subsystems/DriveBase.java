@@ -37,6 +37,8 @@ public class DriveBase extends SubsystemBase {
 
         leftSlave.follow(leftMaster);
         rightSlave.follow(rightMaster);
+
+        zeroEncoders();
     }
 
     public void zeroEncoders(){

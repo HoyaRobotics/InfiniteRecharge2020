@@ -1,7 +1,6 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import static frc.robot.Constants.*;
 import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.Limelight;
 import frc.robot.util.Logger;
@@ -22,7 +21,7 @@ public class ShooterRev extends CommandBase {
 
     @Override
     public void initialize(){
-        double distance = LL_SHOT_HEIGHT / Math.abs(Math.toRadians(limelight.getYOffset())) + 0.5;
+        double distance = limelight.getDistanceFromTarget() + 0.5;
 
         //sets rpm
         if(distance <= 30)

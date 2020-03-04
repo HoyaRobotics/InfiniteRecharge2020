@@ -16,12 +16,12 @@ public class TimedIntake extends CommandBase{
 
     private int callCounter = 0;
 
-    public TimedIntake(Intake intake, double speed, int ms, IntakeMode mode){
+    public TimedIntake(Intake intake, double speed, double seconds, IntakeMode mode){
         this.intake = intake;
         this.speed = speed;
         this.mode = mode;
 
-        calls = ms / 20;
+        calls = (int)(seconds * 50);
     }
 
     @Override

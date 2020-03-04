@@ -22,12 +22,12 @@ public class ShootBall extends SequentialCommandGroup {
         
         addCommands(
             new AlignTurret(turret, limelight),
-            new ShooterRev(shooter, limelight),
+            new ShooterRev(shooter, limelight)/*,
             new TimedIntake(intake, -1.0, 100, IntakeMode.INTERNAL),
             new InstantCommand(() -> shooter.openBallGate()),
             new WaitCommand(0.1),
             new TimedIntake(intake, 1.0, 1000, IntakeMode.INTERNAL),
-            new InstantCommand(() -> shooter.closeBallGate())
+            new InstantCommand(() -> shooter.closeBallGate())*/
         );
     }
 

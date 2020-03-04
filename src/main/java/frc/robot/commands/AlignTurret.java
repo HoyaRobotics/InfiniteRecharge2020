@@ -5,6 +5,7 @@ import static frc.robot.Constants.*;
 import frc.robot.subsystems.Turret;
 import frc.robot.subsystems.Limelight;
 
+//for later autonomous: 1.2deg offset
 public class AlignTurret extends CommandBase {
 
     private final Turret turret;
@@ -13,7 +14,7 @@ public class AlignTurret extends CommandBase {
     public AlignTurret(Turret turret, Limelight limelight){
         this.turret = turret;
         this.limelight = limelight;
-
+        
         addRequirements(turret, limelight);
     }
 
@@ -21,7 +22,7 @@ public class AlignTurret extends CommandBase {
     public void execute(){
         //POSITVE ROTATOR SPEED = CLOCKWISE
         //NEGATIVE ROTATOR SPEED = COUNTER-CLOCKWISE
-        double speed = (limelight.getXOffset() + 3) * TURRET_P;
+        double speed = (limelight.getXOffset() + 2) * TURRET_P;
 
         if(speed > 0.1)
             speed = 0.1;
@@ -33,7 +34,7 @@ public class AlignTurret extends CommandBase {
 
     @Override
     public boolean isFinished(){
-        return Math.abs((limelight.getXOffset() + 3)) < TURRET_SENSITIVITY_DEGREES;
+        return Math.abs((limelight.getXOffset() + 2)) < TURRET_SENSITIVITY_DEGREES;
     }
 
     @Override
