@@ -7,6 +7,7 @@ import frc.robot.commands.TimedIntake.IntakeMode;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.Turret;
+import frc.robot.util.Logger;
 import frc.robot.subsystems.Limelight;
 
 public class ShootBall extends SequentialCommandGroup {
@@ -37,5 +38,15 @@ public class ShootBall extends SequentialCommandGroup {
             new AlignTurret(turret, limelight),
             new TimedIntake(intake, 1.0, 0.12, IntakeMode.INTERNAL)
         );
+    }
+
+    @Override
+    public void initialize(){
+        Logger.info("Beginning shooting sequence");
+    }
+
+    @Override
+    public void end(boolean interrupted){
+        Logger.info("Finished shooting sequence");
     }
 }

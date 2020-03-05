@@ -2,6 +2,7 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.util.Logger;
 import frc.robot.util.Utils;
 
 import static frc.robot.Constants.*;
@@ -32,6 +33,11 @@ public class Intake extends SubsystemBase {
             
             //this is inverted because solenoid off = raised
             raiser.set(!raised);
+
+            if(raised)
+                Logger.info("Raising intake");
+            else
+                Logger.info("Lowering intake");
         }
     }
 

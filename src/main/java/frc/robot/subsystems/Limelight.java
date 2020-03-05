@@ -3,7 +3,6 @@ package frc.robot.subsystems;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
@@ -16,11 +15,6 @@ public class Limelight extends SubsystemBase{
     private final NetworkTableEntry yOffset = table.getEntry("ty");
 
     private int currentPipeline = 0;
-
-    @Override
-    public void periodic(){
-        SmartDashboard.putNumber("limelightDistance", getDistanceFromTarget());
-    }
 
     public void toggleZoom(){
         if(currentPipeline == 0)

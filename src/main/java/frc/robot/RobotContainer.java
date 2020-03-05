@@ -2,12 +2,9 @@ package frc.robot;
 
 import static frc.robot.Constants.*;
 
-import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.XboxController.Button;
 import frc.robot.commands.AlignTurret;
-import frc.robot.commands.ApplyShootingOffset;
-import frc.robot.commands.AutoDrive;
 import frc.robot.commands.ControlClimber;
 import frc.robot.commands.DriveForTime;
 import frc.robot.commands.DriveWithJoystick;
@@ -24,13 +21,10 @@ import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.Turret;
 import frc.robot.subsystems.Limelight;
-import frc.robot.util.Logger;
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 

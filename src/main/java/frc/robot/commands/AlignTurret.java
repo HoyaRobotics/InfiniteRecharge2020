@@ -3,6 +3,7 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import static frc.robot.Constants.*;
 import frc.robot.subsystems.Turret;
+import frc.robot.util.Logger;
 import frc.robot.subsystems.Limelight;
 
 //for later autonomous: 1.2deg offset
@@ -16,6 +17,11 @@ public class AlignTurret extends CommandBase {
         this.limelight = limelight;
         
         addRequirements(turret, limelight);
+    }
+
+    @Override
+    public void initialize(){
+        Logger.info("Beginning turret alignment");
     }
 
     @Override
@@ -40,6 +46,7 @@ public class AlignTurret extends CommandBase {
     @Override
     public void end(boolean interrupted){
         turret.setRotatorSpeed(0);
+        Logger.info("Finished turret alignment");
     }
 
 }

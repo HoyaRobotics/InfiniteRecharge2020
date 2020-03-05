@@ -1,6 +1,5 @@
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 import java.util.function.DoubleSupplier;
@@ -25,7 +24,6 @@ public class RotateWithJoystick extends CommandBase {
     public void execute(){
         double speed = Utils.applyDeadband(input.getAsDouble(), Constants.CONTROL_DEADBAND) / 2;
         turret.setRotatorSpeed(speed);
-        SmartDashboard.putNumber("turretSpeed", speed);
     }
 
     @Override

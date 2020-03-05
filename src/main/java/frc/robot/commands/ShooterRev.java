@@ -30,16 +30,18 @@ public class ShooterRev extends CommandBase {
             targetRPM = 3750;
 
         shooter.setFlywheelRPM(targetRPM);
-    }
 
-    @Override
-    public void execute(){
-        Logger.info("Flywheel Velocity: " + shooter.getFlywheelRPM());
+        Logger.info("Started revving shooter to " + targetRPM + "RPM");
     }
 
     @Override
     public boolean isFinished(){
         return shooter.isStable();
+    }
+
+    @Override
+    public void end(boolean interrupted){
+        Logger.info("Finished revving shooter");
     }
 
 }

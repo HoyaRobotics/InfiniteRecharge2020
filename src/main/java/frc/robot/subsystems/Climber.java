@@ -5,6 +5,8 @@ import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.util.Logger;
+
 import static frc.robot.Constants.*;
 
 public class Climber extends SubsystemBase {
@@ -31,6 +33,11 @@ public class Climber extends SubsystemBase {
     public void setLocked(boolean locked){
         this.locked = locked;
         lock.set(!locked);
+
+        if(locked)
+            Logger.info("Climber is locked");
+        else
+            Logger.info("Climber is unlocked");
     }
 
     public boolean isLocked(){

@@ -114,7 +114,6 @@ public class Shooter extends SubsystemBase {
         }else{
             openBallGate();
             Logger.info("Ball gate closed");
-            
         }
     }
 
@@ -135,10 +134,12 @@ public class Shooter extends SubsystemBase {
     public void incrementRPMOffset(double amount){
         rpmOffset += amount;
         setFlywheelRPM(targetRPM);
+        Logger.info("Incremented RPM offset to " + rpmOffset);
     }
 
     public void decrementRPMOffset(double amount){
         rpmOffset -= amount;
         setFlywheelRPM(targetRPM);
+        Logger.info("Decremented RPM offset to " + rpmOffset);
     }
 }
