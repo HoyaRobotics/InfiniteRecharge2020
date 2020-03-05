@@ -98,8 +98,13 @@ public class RobotContainer {
     shootBall.whenReleased(new InstantCommand(() -> {
       shootBallCmd.cancel();
       shooter.setFlywheelPercent(0);
+      shooter.closeBallGate();
       turret.setRotatorSpeed(0);
     }));
+
+    JoystickButton manualSpinShooter = new JoystickButton(driver, 7);
+    manualSpinShooter.whenPressed(new InstantCommand(() -> shooter.setFlywheelRPM(4000)));
+    manualSpinShooter.whenReleased(new InstantCommand(() -> shooter.setFlywheelRPM(0)));
 
     //Operator controls:
     turret.setDefaultCommand(new RotateWithJoystick(turret, () -> operator.getX(Hand.kLeft)));
@@ -112,10 +117,6 @@ public class RobotContainer {
 
     JoystickButton decRPMOffset = new JoystickButton(operator, Button.kBumperLeft.value);
     decRPMOffset.whenPressed(new InstantCommand(() -> shooter.decrementRPMOffset(100)));
-
-    JoystickButton manualSpinShooter = new JoystickButton(operator, Button.kA.value);
-    manualSpinShooter.whenPressed(new InstantCommand(() -> shooter.setFlywheelRPM(4000)));
-    manualSpinShooter.whenReleased(new InstantCommand(() -> shooter.setFlywheelRPM(0)));
   }
 
   

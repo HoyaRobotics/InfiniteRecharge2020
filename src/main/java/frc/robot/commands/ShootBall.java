@@ -18,18 +18,23 @@ public class ShootBall extends SequentialCommandGroup {
             new InstantCommand(() -> shooter.openBallGate()),
             new AlignTurret(turret, limelight),
             new ShooterRev(shooter, limelight),
+            new AlignTurret(turret, limelight),
             new TimedIntake(intake, 1.0, 0.12, IntakeMode.INTERNAL),
             new AlignTurret(turret, limelight),
             new ShooterRev(shooter, limelight),
+            new AlignTurret(turret, limelight),
             new TimedIntake(intake, 1.0, 0.12, IntakeMode.INTERNAL),
             new AlignTurret(turret, limelight),
             new ShooterRev(shooter, limelight),
+            new AlignTurret(turret, limelight),
             new TimedIntake(intake, 1.0, 0.12, IntakeMode.INTERNAL),
             new AlignTurret(turret, limelight),
             new ShooterRev(shooter, limelight),
+            new AlignTurret(turret, limelight),
             new TimedIntake(intake, 1.0, 0.12, IntakeMode.INTERNAL),
             new AlignTurret(turret, limelight),
             new ShooterRev(shooter, limelight),
+            new AlignTurret(turret, limelight),
             new TimedIntake(intake, 1.0, 0.12, IntakeMode.INTERNAL)
         );
     }
