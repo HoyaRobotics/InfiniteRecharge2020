@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.XboxController.Button;
 import frc.robot.commands.AlignTurret;
+import frc.robot.commands.ApplyShootingOffset;
 import frc.robot.commands.AutoDrive;
 import frc.robot.commands.ControlClimber;
 import frc.robot.commands.DriveForTime;
@@ -105,6 +106,12 @@ public class RobotContainer {
 
     JoystickButton toggleLimelightZoom = new JoystickButton(operator, Button.kB.value);
     toggleLimelightZoom.whenPressed(new InstantCommand(() -> limelight.toggleZoom()));
+
+    JoystickButton incRPMOffset = new JoystickButton(operator, Button.kBumperRight.value);
+    incRPMOffset.whenPressed(new InstantCommand(() -> shooter.incrementRPMOffset(100)));
+
+    JoystickButton decRPMOffset = new JoystickButton(operator, Button.kBumperLeft.value);
+    decRPMOffset.whenPressed(new InstantCommand(() -> shooter.decrementRPMOffset(100)));
   }
 
   

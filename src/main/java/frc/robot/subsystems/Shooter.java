@@ -28,6 +28,9 @@ public class Shooter extends SubsystemBase {
 
     private boolean gateOpen;
 
+    private double targetRPM;
+    private double rpmOffset;
+
     public Shooter(){
         left.restoreFactoryDefaults();
         right.restoreFactoryDefaults();
@@ -85,7 +88,8 @@ public class Shooter extends SubsystemBase {
     }
 
     public void setFlywheelRPM(double rpm){
-        pid.setReference(rpm, ControlType.kVelocity);
+        targetRPM = rpm;
+        pid.setReference(targetRPM + rpmOffset, ControlType.kVelocity);
     }
 
     public void setFlywheelPercent(double percent){
@@ -117,4 +121,13 @@ public class Shooter extends SubsystemBase {
         gateOpen = false;
     }
 
+    public void incrementRPMOffset(double amount){
+        rpmOffset += amount;
+        setFlywheelRPM(targetRPM);
+    }
+
+    public void decrementRPMOffset(double amount){
+        rpmOffset -= amount;
+        setFlywheelRPM(targetRPM);
+    }
 }
