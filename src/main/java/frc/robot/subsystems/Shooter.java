@@ -1,6 +1,8 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.util.Logger;
@@ -14,6 +16,8 @@ import com.revrobotics.ControlType;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 public class Shooter extends SubsystemBase {
+
+    private final XboxController gateFeedback;
 
     private final Solenoid ballGate = new Solenoid(BALL_GATE);
 
@@ -31,7 +35,9 @@ public class Shooter extends SubsystemBase {
     private double targetRPM;
     private double rpmOffset;
 
-    public Shooter(){
+    public Shooter(XboxController gateFeedback){
+        this.gateFeedback = gateFeedback;
+        
         left.restoreFactoryDefaults();
         right.restoreFactoryDefaults();
 
@@ -57,6 +63,7 @@ public class Shooter extends SubsystemBase {
             rpmLogCounter = 0;
 
         SmartDashboard.putNumber("flywheelRPM", encoder.getVelocity());
+        SmartDashboard.putNumber("rpmOffset", rpmOffset);
     }
 
     public boolean isStable(){
@@ -114,11 +121,15 @@ public class Shooter extends SubsystemBase {
     public void openBallGate(){
         ballGate.set(true);
         gateOpen = true;
+        gateFeedback.setRumble(RumbleType.kLeftRumble, 0);
+        gateFeedback.setRumble(RumbleType.kRightRumble, 0);
     }
 
     public void closeBallGate(){
         ballGate.set(false);
         gateOpen = false;
+        gateFeedback.setRumble(RumbleType.kLeftRumble, 0.5);
+        gateFeedback.setRumble(RumbleType.kRightRumble, 0.5);
     }
 
     public void incrementRPMOffset(double amount){
