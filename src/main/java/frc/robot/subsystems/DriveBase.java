@@ -9,6 +9,17 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import static frc.robot.Constants.*;
 
+/**
+ * This subsystem encapsulates the motors running the
+ * robot's drivebase.
+ * We use four Falcon 500s (two on each side).
+ * They are set to coast mode and are current limited,
+ * to prevent brownouts while pushing other robots.
+ * 
+ * It is used with the arcade drive control scheme,
+ * where the joystick's y-axis controls throttle and 
+ * the x-axis controls rotation.
+ */
 public class DriveBase extends SubsystemBase {
     
     private final WPI_TalonFX leftMaster = new WPI_TalonFX(FRONT_LEFT_DRIVE);

@@ -8,6 +8,15 @@ import frc.robot.Constants;
 import frc.robot.subsystems.Turret;
 import frc.robot.util.Utils;
 
+/**
+ * This class allows for rotation of the turret using
+ * one axis of a joystick.
+ * 
+ * It is used by the operator for large-scale turret
+ * adjustments (for when the Limelight's target is
+ * completely out of the camera frame) before the
+ * AlignTurret command takes over.
+ */
 public class RotateWithJoystick extends CommandBase {
 
     private final Turret turret;
@@ -23,6 +32,8 @@ public class RotateWithJoystick extends CommandBase {
     @Override
     public void execute(){
         double speed = Utils.applyDeadband(input.getAsDouble(), Constants.CONTROL_DEADBAND) / 2;
+        //                                                                                    ^
+        //                                  divide by two to allow for much finer turret control
         turret.setRotatorSpeed(speed);
     }
 

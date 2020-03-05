@@ -12,6 +12,15 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+/**
+ * This subsystem encapsulates the polycord systems used
+ * to intake power cells.
+ * 
+ * It is generally seperated into two parts: external and internal.
+ * The external part can be raised and lowered outside of the frame
+ * perimeter during operation.
+ * The internal part is the conveyor system leading the the shooter.
+ */
 public class Intake extends SubsystemBase {
 
     private final Solenoid raiser = new Solenoid(INTAKE_RAISER);
@@ -31,7 +40,7 @@ public class Intake extends SubsystemBase {
         if(this.raised != raised){
             this.raised = raised;
             
-            //this is inverted because solenoid off = raised
+            // This is inverted because solenoid off = raised.
             raiser.set(!raised);
 
             if(raised)

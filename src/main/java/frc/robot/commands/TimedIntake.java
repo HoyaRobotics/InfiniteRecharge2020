@@ -3,6 +3,19 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Intake;
 
+/**
+ * This command runs the intake at a certain speed
+ * for a certain time.
+ * 
+ * There is also a distinction made between the internal
+ * and external intakes.
+ * The internal intake is the conveyor belt directly feeding
+ * the shooter, while the external intake is the component
+ * that extends outside of the robot frame during matches.
+ * 
+ * This is used for automatic ball control during shooting,
+ * in teleop and autonomous.
+ */
 public class TimedIntake extends CommandBase{
 
     public enum IntakeMode {

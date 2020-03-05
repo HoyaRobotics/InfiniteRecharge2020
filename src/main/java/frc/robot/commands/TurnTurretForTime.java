@@ -3,6 +3,12 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Turret;
 
+/**
+ * This command allows the turret to spin at a certain
+ * speed for a certain time.
+ * 
+ * This is only used in autonomous.
+ */
 public class TurnTurretForTime extends CommandBase {
 
     private final Turret turret;

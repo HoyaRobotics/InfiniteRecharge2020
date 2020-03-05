@@ -6,6 +6,14 @@ import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
+/**
+ * This subsystem encapsulates the Limelight camera and
+ * its NetworkTables interface.
+ * 
+ * The Limelight is integral to our automated shooting system.
+ * It provides both the horizontal offset for turret alignment
+ * and distance to target for shooter revving.
+ */
 public class Limelight extends SubsystemBase{
 
     private final NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
@@ -16,6 +24,10 @@ public class Limelight extends SubsystemBase{
 
     private int currentPipeline = 0;
 
+    /**
+     * Toggles between two pipelines identical
+     * other than one is 2x zoomed.
+     */
     public void toggleZoom(){
         if(currentPipeline == 0)
             currentPipeline = 1;
@@ -25,6 +37,11 @@ public class Limelight extends SubsystemBase{
         setPipeline(currentPipeline);
     }
 
+    /**
+     * Calculates distance to target using techniques from:
+     * https://docs.limelightvision.io/en/latest/cs_estimating_distance.html#fixed-angle-camera
+     * @return distance to target
+     */
     public double getDistanceFromTarget(){
         return Constants.LL_SHOT_HEIGHT / Math.abs(Math.toRadians(getYOffset()));
     }

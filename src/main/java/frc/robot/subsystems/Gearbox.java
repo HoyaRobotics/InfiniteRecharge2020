@@ -6,6 +6,12 @@ import frc.robot.util.Logger;
 
 import static frc.robot.Constants.*;
 
+/**
+ * This small subsystem encapsulates our shifting gearboxes.
+ * 
+ * This was seperated from the DriveBase subsystem to ensure
+ * constant control of robot motion, even when shifting gears.
+ */
 public class Gearbox extends SubsystemBase {
 
     private final Solenoid shifter = new Solenoid(SHIFTER);

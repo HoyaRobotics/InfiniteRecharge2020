@@ -7,6 +7,9 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import static frc.robot.Constants.*;
 
+/**
+ * This subsystem encapsulates the robot's turret.
+ */
 public class Turret extends SubsystemBase {
 
     private final WPI_TalonSRX rotator = new WPI_TalonSRX(TURRET_ROTATOR);
@@ -18,10 +21,6 @@ public class Turret extends SubsystemBase {
 
     public void setRotatorSpeed(double speed){
         rotator.set(ControlMode.PercentOutput, speed);
-    }
-
-    public double getVelocity(){
-        return rotator.getSelectedSensorVelocity();
     }
 
 }

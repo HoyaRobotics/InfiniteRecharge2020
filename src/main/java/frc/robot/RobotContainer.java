@@ -12,14 +12,16 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 /**
- * This class is where the robot subsystems and their various commands
- * of the robot are declared.
+ * This class is where the robot subsystems and commands are declared.
+ * Commands are also bound to button triggers here.
  */
 public class RobotContainer {
 
+  // Two controllers used for robot operation
   private final XboxController driver = new XboxController(DRIVER);
   private final XboxController operator = new XboxController(OPERATOR);
 
+  // Robot subsystems:
   private final DriveBase driveBase = new DriveBase();
   private final Gearbox gearbox = new Gearbox();
   private final Intake intake = new Intake();
@@ -29,13 +31,19 @@ public class RobotContainer {
   private final Limelight limelight = new Limelight();
   
   public RobotContainer() {
-    //Driver controls:
+    // Driver controls:
+
+    // Drivebase control
     driveBase.setDefaultCommand(new DriveWithJoystick(driveBase, () -> driver.getY(Controls.DRIVE), () -> driver.getX(Controls.DRIVE)));
+    
+    // Climber control
     climber.setDefaultCommand(new ControlClimber(climber, () -> driver.getPOV()));
 
+    // Gear shifting
     JoystickButton shiftGear = new JoystickButton(driver, Controls.SHIFT_GEAR);
     shiftGear.whenPressed(new InstantCommand(() -> gearbox.toggleGear()));
 
+    // Intake running
     JoystickButton runIntakeFwd = new JoystickButton(driver, Controls.RUN_INTAKE_FWD);
     runIntakeFwd.whenPressed(new InstantCommand(() -> {
       intake.setInternalRoller(1.0);
@@ -63,9 +71,11 @@ public class RobotContainer {
     JoystickButton toggleIntakeRaised = new JoystickButton(driver, Controls.TOGGLE_INTAKE_RAISED);
     toggleIntakeRaised.whenPressed(new InstantCommand(() -> intake.toggleRaised()));
     
+    // Ball gate control
     JoystickButton toggleBallGate = new JoystickButton(driver, Controls.TOGGLE_BALL_GATE);
     toggleBallGate.whenPressed(new InstantCommand(() -> shooter.toggleBallGate()));
 
+    // Auto-shooting
     JoystickButton shootBall = new JoystickButton(driver, Controls.SHOOT_BALL);
     ShootBall shootBallCmd = new ShootBall(shooter, intake, turret, limelight);
     shootBall.whenPressed(shootBallCmd);
@@ -76,16 +86,21 @@ public class RobotContainer {
       turret.setRotatorSpeed(0);
     }));
 
+    // Manual shooting
     JoystickButton manualSpinShooter = new JoystickButton(driver, Controls.SHOOT_BALL_MANUAL);
     manualSpinShooter.whenPressed(new InstantCommand(() -> shooter.setFlywheelRPM(4000)));
     manualSpinShooter.whenReleased(new InstantCommand(() -> shooter.setFlywheelRPM(0)));
 
     //Operator controls:
+
+    // Turret control
     turret.setDefaultCommand(new RotateWithJoystick(turret, () -> operator.getX(Controls.ROTATE_TURRET)));
 
+    // Limelight zoom
     JoystickButton toggleLimelightZoom = new JoystickButton(operator, Controls.TOGGLE_LIMELIGHT_ZOOM);
     toggleLimelightZoom.whenPressed(new InstantCommand(() -> limelight.toggleZoom()));
 
+    // RPM offset control
     JoystickButton incRPMOffset = new JoystickButton(operator, Controls.INC_RPM_OFFSET);
     incRPMOffset.whenPressed(new InstantCommand(() -> shooter.incrementRPMOffset(100)));
 

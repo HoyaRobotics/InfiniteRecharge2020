@@ -8,6 +8,13 @@ import frc.robot.Constants;
 import frc.robot.subsystems.DriveBase;
 import frc.robot.util.Utils;
 
+/**
+ * This class allows for control of the drivetrain
+ * using a joystick. It runs the drivetrain in
+ * arcade drive mode.
+ * (the joystick's y-axis controls throttle and
+ * x-axis controls rotation)
+ */
 public class DriveWithJoystick extends CommandBase{
     
     private final DriveBase driveBase;

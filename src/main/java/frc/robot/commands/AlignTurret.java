@@ -6,7 +6,14 @@ import frc.robot.subsystems.Turret;
 import frc.robot.util.Logger;
 import frc.robot.subsystems.Limelight;
 
-//for later autonomous: 1.2deg offset
+/**
+ * This class is the command responsible for aligning the
+ * turret towards the Limelight's target.
+ * 
+ * Before running this command, drivers should check the
+ * Limelight's camera feed to ensure it is locked on to
+ * the correct target.
+ */
 public class AlignTurret extends CommandBase {
 
     private final Turret turret;
@@ -26,10 +33,15 @@ public class AlignTurret extends CommandBase {
 
     @Override
     public void execute(){
-        //POSITVE ROTATOR SPEED = CLOCKWISE
-        //NEGATIVE ROTATOR SPEED = COUNTER-CLOCKWISE
-        double speed = (limelight.getXOffset() + 2) * TURRET_P;
+        // Positive speed = Clockwise motion
+        // Negative speed = Counter-clockwise motion
 
+        double speed = (limelight.getXOffset() + 2) * TURRET_P;
+        //                                       ^
+        //offset target 2 degrees to the right (this seems to line it up nicer)
+
+        // Limit speed to 10% motor speed in either direction.
+        // This should be adjusted later to find optimal rotating speed.
         if(speed > 0.1)
             speed = 0.1;
         else if(speed < -0.1)
@@ -40,6 +52,9 @@ public class AlignTurret extends CommandBase {
 
     @Override
     public boolean isFinished(){
+        // Because the Limelight's x offset has some error while targeting,
+        // don't wait for it to be exactly zero, but instead within an
+        // acceptable error range.
         return Math.abs((limelight.getXOffset() + 2)) < TURRET_SENSITIVITY_DEGREES;
     }
 

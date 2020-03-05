@@ -83,6 +83,8 @@ public class Logger{
             e.printStackTrace();
         }catch(NullPointerException e){
             try{
+                // If the file does not exist (aka there is no USB drive),
+                // use the roboRIO's file system instead.
                 File logFile = new File("/home/lvuser/latest.txt");
                 logFile.createNewFile();
                 

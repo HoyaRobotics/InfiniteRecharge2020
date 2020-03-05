@@ -15,8 +15,15 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.ControlType;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+/**
+ * This subsystem encapsulates the flywheel used to
+ * shoot power cells and the gate used to prevent power cells
+ * from entering the shooter.
+ * RPM is controlled using the SparkMAX's integrated PID capabilities.
+ */
 public class Shooter extends SubsystemBase {
 
+    // Controller to rumble when gate is closed.
     private final XboxController gateFeedback;
 
     private final Solenoid ballGate = new Solenoid(BALL_GATE);
@@ -27,6 +34,8 @@ public class Shooter extends SubsystemBase {
     private final CANPIDController pid = right.getPIDController();
     private final CANEncoder encoder = right.getEncoder();
 
+    // Variables to keep track of RPM history over last 400ms.
+    // Used to determine shooter stability.
     private double[] rpmLog = new double[20];
     private int rpmLogCounter = 0;
 
@@ -55,6 +64,8 @@ public class Shooter extends SubsystemBase {
 
     @Override
     public void periodic(){
+        // Keep track of previous 400ms of RPMs.
+        // (not in chronological order)
         rpmLog[rpmLogCounter] = getFlywheelRPM();
 
         if(rpmLogCounter < rpmLog.length - 1)
@@ -66,6 +77,17 @@ public class Shooter extends SubsystemBase {
         SmartDashboard.putNumber("rpmOffset", rpmOffset);
     }
 
+    /**
+     * Determines whether or not the shooter has been
+     * stable for the past 400ms.
+     * "Stable" = difference between highest and lowest RPM
+     * is within acceptable range.
+     * 
+     * Ignores RPMs that are zero and datasets that are 50% zero.
+     * 
+     * Used to decide whether or not to shoot a ball.
+     * @return if the shooter is stable
+     */
     public boolean isStable(){
         double highest = Double.MIN_VALUE;
         double lowest = Double.MAX_VALUE;
@@ -94,6 +116,13 @@ public class Shooter extends SubsystemBase {
                 (average - lowest) < RPM_STABILITY_ERROR;
     }
 
+    /**
+     * Sets flywheel's target RPM.
+     * Adds an "RPM offset" that can be changed
+     * on-the-fly by the operator to compensate for
+     * battery voltage or power cell condition.
+     * @param rpm
+     */
     public void setFlywheelRPM(double rpm){
         targetRPM = rpm;
         pid.setReference(targetRPM + rpmOffset, ControlType.kVelocity);

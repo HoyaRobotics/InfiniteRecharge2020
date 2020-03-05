@@ -3,6 +3,12 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.DriveBase;
 
+/**
+ * This command allows the drivetrain to run at a certain
+ * percent output for a certain time.
+ * 
+ * This is only used in autonomous.
+ */
 public class DriveForTime extends CommandBase {
 
     private final DriveBase driveBase;
@@ -15,6 +21,7 @@ public class DriveForTime extends CommandBase {
         this.driveBase = driveBase;
         this.speed = speed;
 
+        // Convert time in seconds to robot cycles (50 cycles/s)
         target = (int)(seconds * 50);
 
         addRequirements(driveBase);

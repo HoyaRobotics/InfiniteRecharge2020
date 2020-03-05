@@ -33,7 +33,11 @@ public class Robot extends TimedRobot {
     CommandScheduler.getInstance().run();
 
     Logger.flush();
-    SmartDashboard.putNumber("loopTime", System.currentTimeMillis() - start);
+    long loopTime = System.currentTimeMillis() - start;
+    if(loopTime > 20)
+      Logger.warn("Loop overrun: " + loopTime + "ms");
+
+    SmartDashboard.putNumber("loopTime", loopTime);
   }
 
   /**
@@ -56,10 +60,10 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
-    // fetch autonomous command from RobotContainer
+    // Fetch autonomous command from RobotContainer
     autonomousCommand = robotContainer.getAutonomousCommand();
 
-    // schedule the autonomous command
+    // Schedule the autonomous command
     if (autonomousCommand != null) {
       autonomousCommand.schedule();
     }
@@ -79,7 +83,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopInit() {
-    // ensure autonomous stops running when beginning teleop
+    // Ensure autonomous stops running when beginning teleop
     if (autonomousCommand != null) {
       autonomousCommand.cancel();
     }

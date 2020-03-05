@@ -1,5 +1,9 @@
 package frc.robot.util;
 
+/**
+ * This class supplies several utility functions for
+ * clamping values to acceptable ranges.
+ */
 public class Utils{
 
     /**

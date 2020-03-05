@@ -5,11 +5,25 @@ import java.util.function.DoubleSupplier;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Climber;
 
+/**
+ * This command is responsible for monitoring the
+ * driver's d-pad and controlling the climber accordingly.
+ * 
+ * Up/down on the d-pad = up/down on the elevator
+ * Left/right on the d-pad = left/right on the leveler
+ * 
+ * Because the elevator's lock is engaged by default, it
+ * is automatically disengaged before any movement and then
+ * re-enagated afterwords.
+ */
 public class ControlClimber extends CommandBase {
 
     private final Climber climber;
     private final DoubleSupplier commander;
 
+    // Variable to keep track of the last time a command
+    // was sent. This is used to create a small delay
+    // between disengaging the lock and moving the elevator.
     private long lastTrigger = 0;
 
     public ControlClimber(Climber climber, DoubleSupplier commander){
@@ -23,7 +37,8 @@ public class ControlClimber extends CommandBase {
     public void execute(){
         int command = (int) commander.getAsDouble();
 
-        //up
+        // Elevator control:
+        // Up
         if(command == 0){
             if(climber.isLocked()){
                 climber.setLocked(false);
@@ -32,7 +47,7 @@ public class ControlClimber extends CommandBase {
             if(System.currentTimeMillis() - lastTrigger > 200)
                 climber.setVerticalSpeed(0.5);
         }
-        //down
+        // Down
         else if(command == 180){
             if(climber.isLocked()){
                 climber.setLocked(false);
@@ -48,11 +63,13 @@ public class ControlClimber extends CommandBase {
             }
         }
 
-        //right
+        // Leveler control:
+        // (this is much shorter since there is no lock)
+        // Right
         if(command == 90){
             climber.setHorizontalSpeed(1.0);
         }
-        //left
+        // Left
         else if(command == 270){
             climber.setHorizontalSpeed(-1.0);
         }else{

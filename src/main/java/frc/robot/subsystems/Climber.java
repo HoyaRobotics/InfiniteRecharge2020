@@ -9,6 +9,12 @@ import frc.robot.util.Logger;
 
 import static frc.robot.Constants.*;
 
+/**
+ * This subsystem encapsulates the elevator used to
+ * raise the climber up to the shield generator's bar,
+ * and the leveler to be used while hanging.
+ * It also includes the elevator's pneumatic lock mechanism.
+ */
 public class Climber extends SubsystemBase {
 
     private final WPI_TalonSRX moveHorizontal = new WPI_TalonSRX(CLIMBER_HORIZONTAL);

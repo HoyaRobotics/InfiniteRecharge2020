@@ -47,10 +47,11 @@ public class Constants {
     public static final int CLIMBER_HORIZONTAL = 12;
 
     // PCM ids
+    // (our PCM's port 2 is broken, do not use it)
     public static final int CLIMBER_LOCK = 0;
     public static final int SHIFTER = 1;
-    public static final int BALL_GATE = 4; //port 2 is broken - do not use port 2.
     public static final int INTAKE_RAISER = 3;
+    public static final int BALL_GATE = 4;
 
     // DriveBase
     public static final double CONTROL_DEADBAND = 0.10;
@@ -74,8 +75,8 @@ public class Constants {
     public static final double TURRET_SENSITIVITY_VELOCITY = 0;
 
     // Limelight
-    public static final double LL_HEIGHT_ABOVE_GROUND = 2.75;//in feet (2'9")
-    public static final double LL_TARGET_HEIGHT = 7.5; //in feet
+    public static final double LL_HEIGHT_ABOVE_GROUND = 2.75;// in feet (2'9")
+    public static final double LL_TARGET_HEIGHT = 7.5; // in feet (7'6")
     public static final double LL_SHOT_HEIGHT = LL_TARGET_HEIGHT - LL_HEIGHT_ABOVE_GROUND;
 
 }
