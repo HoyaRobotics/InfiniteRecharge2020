@@ -45,8 +45,8 @@ public class Shooter extends SubsystemBase {
         right.setClosedLoopRampRate(1);
 
         pid.setFeedbackDevice(encoder);
-        pid.setFF(0.00019);
-        pid.setP(0.0003);
+        pid.setFF(SHOOTER_FF);
+        pid.setP(SHOOTER_P);
         
         left.follow(right, true);
 

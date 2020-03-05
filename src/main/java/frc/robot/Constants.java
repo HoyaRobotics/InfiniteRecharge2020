@@ -10,14 +10,21 @@ import edu.wpi.first.wpilibj.XboxController.Button;
 public class Constants {
 
     public static class Controls {
+        // Driver controls:
         public static final Hand DRIVE = Hand.kLeft;
-        public static final int TOGGLE_GEAR = Button.kY.value;
+        public static final int SHIFT_GEAR = Button.kY.value;
+        public static final int RUN_INTAKE_FWD = Button.kBumperRight.value;
+        public static final int RUN_INTAKE_RVS = Button.kBumperLeft.value;
         public static final int TOGGLE_INTAKE_RAISED = Button.kX.value;
-        //Mct added
         public static final int TOGGLE_BALL_GATE = Button.kB.value;
-        //end of McT added
-        public static final int RUN_INTAKE = -1;
-        public static final int SHOOT_BALL = -1;
+        public static final int SHOOT_BALL = Button.kA.value;
+        public static final int SHOOT_BALL_MANUAL = 7;
+
+        // Operator controls:
+        public static final Hand ROTATE_TURRET = Hand.kLeft;
+        public static final int TOGGLE_LIMELIGHT_ZOOM = Button.kB.value;
+        public static final int INC_RPM_OFFSET = Button.kBumperRight.value;
+        public static final int DEC_RPM_OFFSET = Button.kBumperLeft.value;
     }
 
     // USB ids
@@ -57,13 +64,9 @@ public class Constants {
     public static final double BALL_RELEASE_TIME = 0.1;
 
     // Shooter
-    public static final double SHOOTER_P = 0;
-    public static final double SHOOTER_I = 0;
-    public static final double SHOOTER_IZ = 0;
-    public static final double SHOOTER_D = 0;
-    public static final double SHOOTER_FF = 0;
+    public static final double SHOOTER_P = 0.0003;
+    public static final double SHOOTER_FF = 0.00019;
     public static final double RPM_STABILITY_ERROR = 25;
-    public static final double SHOOTER_DISTANCE_SENSITVITY = 0;
 
     // Turret
     public static final double TURRET_P = 0.05;
