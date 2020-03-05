@@ -47,11 +47,13 @@ public class DriveBase extends SubsystemBase {
     }
 
     public double getPosition(){
-        return rightMaster.getSensorCollection().getIntegratedSensorPosition();
+        return 0;
+        //return rightMaster.getSensorCollection().getIntegratedSensorPosition();
     }
 
     public double getVelocity(){
-        return rightMaster.getSensorCollection().getIntegratedSensorVelocity();
+        return 0;
+        //return rightMaster.getSensorCollection().getIntegratedSensorVelocity();
     }
 
     /**
