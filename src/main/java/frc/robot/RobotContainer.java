@@ -47,7 +47,7 @@ public class RobotContainer {
   private final DriveBase driveBase = new DriveBase();
   private final Gearbox gearbox = new Gearbox();
   private final Intake intake = new Intake();
-  private final Shooter shooter = new Shooter();
+  private final Shooter shooter = new Shooter(driver);
   private final Turret turret = new Turret();
   private final Climber climber = new Climber();
   
@@ -112,6 +112,10 @@ public class RobotContainer {
 
     JoystickButton decRPMOffset = new JoystickButton(operator, Button.kBumperLeft.value);
     decRPMOffset.whenPressed(new InstantCommand(() -> shooter.decrementRPMOffset(100)));
+
+    JoystickButton manualSpinShooter = new JoystickButton(operator, Button.kA.value);
+    manualSpinShooter.whenPressed(new InstantCommand(() -> shooter.setFlywheelRPM(4000)));
+    manualSpinShooter.whenReleased(new InstantCommand(() -> shooter.setFlywheelRPM(0)));
   }
 
   
