@@ -50,4 +50,8 @@ public class Climber extends SubsystemBase {
         return locked;
     }
 
+    public void toggleLocked(){
+        setLocked(!locked);
+    }
+
 }
