@@ -86,6 +86,9 @@ public class RobotContainer {
       turret.setRotatorSpeed(0);
     }));
 
+    JoystickButton toggleLock = new JoystickButton(driver, 8);
+    toggleLock.whenPressed(new InstantCommand(() -> climber.toggleLocked()));
+
     // Manual shooting
     JoystickButton manualSpinShooter = new JoystickButton(driver, Controls.SHOOT_BALL_MANUAL);
     manualSpinShooter.whenPressed(new InstantCommand(() -> shooter.setFlywheelRPM(4000)));
