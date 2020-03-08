@@ -55,14 +55,4 @@ public class ShootBall extends SequentialCommandGroup {
             new TimedIntake(intake, 1.0, 0.12, IntakeMode.INTERNAL)
         );
     }
-
-    @Override
-    public void initialize(){
-        Logger.info("Beginning shooting sequence");
-    }
-
-    @Override
-    public void end(boolean interrupted){
-        Logger.info("Finished shooting sequence");
-    }
 }
