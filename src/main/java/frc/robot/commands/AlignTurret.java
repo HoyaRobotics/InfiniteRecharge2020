@@ -19,9 +19,18 @@ public class AlignTurret extends CommandBase {
     private final Turret turret;
     private final Limelight limelight;
 
+    private boolean useTDM = false;
+    private int tdmCount = 0;
+    private int tdmThreshold = 100;
+
     public AlignTurret(Turret turret, Limelight limelight){
+        this(turret, limelight, false);
+    }
+
+    public AlignTurret(Turret turret, Limelight limelight, boolean useTDM){
         this.turret = turret;
         this.limelight = limelight;
+        this.useTDM = useTDM;
         
         addRequirements(turret, limelight);
     }
@@ -48,10 +57,18 @@ public class AlignTurret extends CommandBase {
             speed = -0.1;
 
         turret.setRotatorSpeed(speed);
+
+        tdmCount++;
     }
 
     @Override
     public boolean isFinished(){
+        // Apply T.D.M. (turret disaster mitigation) control
+        if(useTDM && tdmCount >= tdmThreshold){
+            Logger.warn("Turret disaster mitigation triggered");
+            return true;
+        }
+
         // Because the Limelight's x offset has some error while targeting,
         // don't wait for it to be exactly zero, but instead within an
         // acceptable error range.
