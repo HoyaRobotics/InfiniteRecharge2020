@@ -116,10 +116,10 @@ public class RobotContainer {
     return new SequentialCommandGroup(
       new InstantCommand(() -> shooter.openBallGate()),
       new ParallelCommandGroup(
-        new TurnTurretForTime(turret, 0.23, 4),
+        new TurnTurretForTime(turret, 0.22, 4),
         new DriveForTime(driveBase, 0.6, 4)
       ),
-      new AlignTurret(turret, limelight),
+      new AlignTurret(turret, limelight, true),
       new ShooterRev(shooter, limelight),
       new TimedIntake(intake, 1.0, 0.22, TimedIntake.IntakeMode.INTERNAL),
       new ShooterRev(shooter, limelight),
