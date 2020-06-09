@@ -128,7 +128,8 @@ public class RobotContainer {
       new ShooterRev(shooter, limelight),
       new TimedIntake(intake, 1.0, 0.15, TimedIntake.IntakeMode.INTERNAL),
       new ShooterRev(shooter, limelight),
-      new TimedIntake(intake, 1.0, 0.15, TimedIntake.IntakeMode.INTERNAL)
+      new TimedIntake(intake, 1.0, 0.15, TimedIntake.IntakeMode.INTERNAL),
+      new InstantCommand(() -> intake.setRaised(false))
     );
   }
 }

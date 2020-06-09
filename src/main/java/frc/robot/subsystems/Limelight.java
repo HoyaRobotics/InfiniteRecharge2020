@@ -24,6 +24,11 @@ public class Limelight extends SubsystemBase{
 
     private int currentPipeline = 0;
 
+    @Override
+    public void periodic(){
+        table.getEntry("ledMode").setNumber(3);
+    }
+
     /**
      * Toggles between two pipelines identical
      * other than one is 2x zoomed.
